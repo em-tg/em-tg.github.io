@@ -140,7 +140,7 @@ look like this:
 ```rs
 //                  V only one lifetime, called "caller-context"
 fn return_reference<'cc>(r: &'cc i32, r2: &'cc i32) -> &'cc i32{
-    r // <-- compiler allows us to return either r or r2
+	r // <-- compiler allows us to return either r or r2
 }
 ```
 
@@ -283,12 +283,12 @@ into it.  Rust has no equivalent to this.  The closest you can get (I think) is 
 
 ```rs
 fn find(haystack: &[i32], needle: i32) -> Cow<i32> {
-    for item in haystack {
-        if *item == needle {
-            return Borrowed(item);
-        }
-    }
-    Owned(0)
+	for item in haystack {
+		if *item == needle {
+			return Borrowed(item);
+		}
+	}
+	Owned(0)
 }
 ```
 
