@@ -60,7 +60,7 @@ this feature generalized into something more useful.  From there, C# added:
 - `readonly struct` and `ref struct`
 - `in` parameters (and later `ref readonly` parameters)
 - conditional `ref` expressions
-- expensions to `stackalloc`
+- extensions to `stackalloc`
 - `ref` fields
 
 In the process of adding the above features, C# needed to define rules around `ref` usage that would
