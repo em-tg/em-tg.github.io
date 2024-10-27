@@ -41,9 +41,9 @@ When I first saw this feature in C# (and also `Span`s, `ref struct`s, and `stack
 where are all the angle brackets and apostrophes?  How is it possible that I can write efficient and
 provably-safe code in C# without a degree in type theory?  In this document I hope to briefly summarize
 my understanding of memory safety in C#, make direct comparisons between C# constructs and the corresponding
-Rust ones, and maybe shed some light on what tradeoffs C# made exactly to get this so user-friendly.
+Rust ones, and maybe shed some light on what trade-offs C# made exactly to get this so user-friendly.
 
-## A history of C# ref safety
+## A brief history of C# ref safety
 
 [Since the beginning](https://ecma-international.org/wp-content/uploads/ECMA-334_1st_edition_december_2001.pdf)
  (2000-ish), C# has had the `ref` keyword for parameters passed into a function by
@@ -166,8 +166,8 @@ ref int Wrapper(ref int r){
 }
 ```
 
-Here we see C#'s first tradeoff: lifetimes are less explicit, but also less powerful.  The defaults
-can also be unintuitive.  Say we wanted to write a method on a struct which returns a reference
+Here we see C#'s first trade-off: lifetimes are less explicit, but also less powerful.  The defaults
+can also be unintuitive: say we wanted to write a method on a struct which returns a reference
 to one of the struct's members.  In rust, this is simple:
 
 ```rs
@@ -238,7 +238,7 @@ ref int DoAThing(ref int p){
 The lack of explicit lifetime annotations means C# has to choose which patterns are and
 aren't allowed.
 
-## The escape hatch: Garbage Collection
+## The escape hatch: garbage collection
 
 Let's say we want to write a function which returns a reference to an integer in a buffer if it finds it:
 
@@ -335,7 +335,7 @@ So: garbage collection lets C# do things safely that are impossible to do in Rus
 the language into the "garbage collected" and "stack allocated" worlds.  Rust has a stack/heap
 distinction, but doesn't need the concept of a "stack-only" or "heap-only" type.
 
-## Sharing XOR Mutation
+## Sharing XOR mutation
 
 In rust, every reference is either:
 - Shared: multiple references may exist and be read from, but none may be written to
