@@ -49,7 +49,7 @@ Rust ones, and maybe shed some light on what trade-offs C# made exactly to get t
  (2000-ish), C# has had the `ref` keyword for parameters passed into a function by
 reference, but that was about all you could do with it.  If you wanted to do efficient things with
 stack-allocated memory and indirection, you would generally use the "unsafe" portions of the language, or
-call out to C++.  It wasn't until 2017, with the release of
+call out to C++.  It wasn't until 2017 with the release of
 [C# version 7](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history) that
 [we started to see](https://devblogs.microsoft.com/dotnet/whats-new-in-csharp-7-0/#ref-returns-and-locals)
 this feature generalized into something more useful.  From there, C# added:
