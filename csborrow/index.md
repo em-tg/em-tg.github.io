@@ -382,11 +382,109 @@ perspective of Rust's "bringing the safety of high-performance code closer to th
 Perhaps that framing makes people miss that although the two languages are pushing in opposite directions,
 they might actually be getting closer together.
 
+## Postscript: C# 11
+
+In the time since I've posted this article, the C# language designers have looked at my two "C# can't
+do this" examples, implemented a language-level fix for them, then travelled back in time to
+November of last year to release the fix in C# 11.  They were careful
+to [barely mention it](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11#ref-fields-and-ref-scoped-variables)
+in the release notes to maximize the chance that I'd carelessly read past it while researching.
+Thanks to those who have pointed out this most devious prank to me.
+
+The first multi-reference example where I explain why this...
+
+```cs
+ref int Wrapper(ref int r){
+	var i = 12;
+	// Cannot use a result of 'Program.ReturnReference(ref int, ref int)'
+	// in this context because it may expose variables referenced by
+	// parameter 'r2' outside of their declaration scope
+	return ref ReturnReference(ref r, ref i);
+}
+```
+
+...can't possibly work can be made to work by changing the definition of `ReturnReference` to:
+
+```cs
+ref int ReturnReference(ref int r, scoped ref int r2){
+	return ref r;
+}
+```
+
+`scoped ref` is a new reference type which promises to never return the reference or assign it
+to an output parameter.  In Rust terms, each C# function really has _two_ lifetimes associated with it,
+"caller-context" and "function-member", with the latter used for `scoped ref` and the implicit `ref this`:
+
+```rs
+fn return_reference<'cc, 'fm>(r: &'cc i32, r2: &'fm i32) -> &'cc i32 {
+	r
+}
+```
+
+Just like we can "scope" a `ref` parameter, we can `unscope` the implicit `ref this`, which fixes
+the other "C# can't do this" example from above:
+
+```cs
+struct Foo {
+	int member;
+
+	[UnscopedRef]
+	ref int GetMember(ref int unused){
+		return ref this.member;
+	}
+}
+```
+
+We can still find things that C# can't do, but we start to leave the realm of
+simple examples, which is quite impressive:
+
+```rs
+struct TwoRefs<'a, 'b> {
+	a: &'a i32,
+	b: &'b i32
+}
+
+fn return_two_refs<'a, 'b>(a: &'a i32, b: &'b i32)
+	-> TwoRefs<'a, 'b>
+{
+	TwoRefs {
+		a: a,
+		b: b
+	}
+}
+
+// This works:
+fn wrapper(r: &i32) -> &i32{
+	let i = 0;
+	&return_two_refs(r, &i).a
+}
+```
 
 
+```cs
+ref struct TwoRefs {
+	public ref int a;
+	public ref int b;
+}
 
+// There's no way to specify that the two refs we 
+// return need different lifetimes, and we can't
+// use the `scoped` keyword for either parameter.
+TwoRefs ReturnTwoRefs(ref int a, ref int b){
+	return new TwoRefs {
+		a = ref a,
+		b = ref b
+	};
+}
 
-
+ref int Wrapper(ref int r){
+	var i = 0;
+	// error CS8348: Cannot use a member of result of 'A.ReturnTwoRefs(ref int, ref int)'
+	// in this context because it may expose variables referenced by parameter 'b'
+	// outside of their declaration scope
+	return ref ReturnTwoRefs(ref r, ref i).a;
+}
+```
 
 
 
