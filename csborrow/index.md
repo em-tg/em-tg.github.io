@@ -384,8 +384,8 @@ they might actually be getting closer together.
 
 ## Postscript: C# 11
 
-In the time since I've posted this article, the C# language designers have looked at my two "C# can't
-do this" examples, implemented a language-level fix for them, then travelled back in time to
+In the time since I've posted this article, the C# language designers have looked at my first two "C# can't
+do this" examples, implemented a language-level fix for both of them, then travelled back in time to
 November of last year to release the fix in C# 11.  They were careful
 to [barely mention it](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11#ref-fields-and-ref-scoped-variables)
 in the release notes to maximize the chance that I'd carelessly read past it while researching.
