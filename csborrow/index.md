@@ -421,7 +421,7 @@ fn return_reference<'cc, 'fm>(r: &'cc i32, r2: &'fm i32) -> &'cc i32 {
 }
 ```
 
-Just like we can "scope" a `ref` parameter, we can `unscope` the implicit `ref this`, which fixes
+Just like we can "scope" a `ref` parameter, we can "unscope" the implicit `ref this`, which fixes
 the other "C# can't do this" example from above:
 
 ```cs
