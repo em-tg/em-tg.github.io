@@ -479,7 +479,7 @@ TwoRefs ReturnTwoRefs(ref int a, ref int b){
 
 ref int Wrapper(ref int r){
 	var i = 0;
-	// error CS8348: Cannot use a member of result of 'A.ReturnTwoRefs(ref int, ref int)'
+	// Cannot use a member of result of 'A.ReturnTwoRefs(ref int, ref int)'
 	// in this context because it may expose variables referenced by parameter 'b'
 	// outside of their declaration scope
 	return ref ReturnTwoRefs(ref r, ref i).a;
