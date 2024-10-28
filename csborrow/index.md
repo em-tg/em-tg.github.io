@@ -403,7 +403,7 @@ ref int Wrapper(ref int r){
 }
 ```
 
-...can't possibly work can be made to work by changing the definition of `ReturnReference` to:
+...can't possibly work can be made to work by changing the definition of `ReturnReference` to this:
 
 ```cs
 ref int ReturnReference(ref int r, scoped ref int r2){
