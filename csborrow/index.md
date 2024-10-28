@@ -389,7 +389,7 @@ do this" examples, implemented a language-level fix for them, then travelled bac
 November of last year to release the fix in C# 11.  They were careful
 to [barely mention it](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11#ref-fields-and-ref-scoped-variables)
 in the release notes to maximize the chance that I'd carelessly read past it while researching.
-Thanks to those who have pointed out this most devious prank to me.
+Thank you to those who have pointed out this devious prank to me.
 
 The first multi-reference example where I explain why this...
 
