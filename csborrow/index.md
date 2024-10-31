@@ -310,7 +310,7 @@ fn find(haystack: &mut [i32], needle: i32) -> RefOrBox<i32> {
 }
 ```
 
-...which is not transparent to the caller.  If we were willing to leak memory, then
+...which is not transparent to the caller of the function.  If we were willing to leak memory, then
 we could write this:
 
 ```rs
