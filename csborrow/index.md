@@ -279,24 +279,42 @@ ref int Find(Span<int> haystack, int needle){
 ```
 
 The array referred to by `def` and the function's return value will live as long as there exist references
-into it.  Rust has no equivalent to this.  The closest you can get (I think) is something like the following:
-
-```rs
-fn find(haystack: &[i32], needle: i32) -> Cow<i32> {
-	for item in haystack {
-		if *item == needle {
-			return Borrowed(item);
-		}
-	}
-	Owned(0)
-}
-```
-
-This is not transparent to the caller of the function.  If we were willing to leak memory, then
-we could write this:
+into it.  Rust has no equivalent to this.  We can return a reference to a constant...
 
 ```rs
 fn find(haystack: &[i32], needle: i32) -> &i32 {
+	for item in haystack {
+		if *item == needle {
+			return item;
+		}
+	}
+	&0
+}
+```
+
+...which disallows mutation, or we can return an enum (discriminated union)...
+
+```rs
+enum RefOrBox<'a, T> {
+	Box(Box<T>),
+	Ref(&'a mut T)
+}
+
+fn find(haystack: &mut [i32], needle: i32) -> RefOrBox<i32> {
+	for item in haystack {
+		if *item == needle {
+			return RefOrBox::Ref(item);
+		}
+	}
+	RefOrBox::Box(Box::new(0))
+}
+```
+
+...which is not transparent to the caller.  If we were willing to leak memory, then
+we could write this:
+
+```rs
+fn find(haystack: &mut [i32], needle: i32) -> &mut i32 {
 	for item in haystack {
 		if *item == needle {
 			return item;
@@ -486,10 +504,10 @@ ref int Wrapper(ref int r){
 }
 ```
 
+## Post-Postscript
 
-
-
-
-
+Thank you to commenters who pointed out that the rust `find` example could just return a reference
+to a constant, rather than needing to use rust's `Cow` type.  I've updated the example and rephrased
+the limitation as a trade-off between mutability and transparency to the caller.
 
 
