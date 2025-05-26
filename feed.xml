@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+	<title>em-tg</title>
+	<description>My articles about programming-related topics</description>
+	<link>https://em-tg.github.io/feed/</link>
+	<item>
+		<title>Implementing Automatic Struct-of-Array Conversion in C</title>
+		<description>A brief exploration of some older, lesser-known metaprogramming techniques</description>
+		<link>https://em-tg.github.io/autosoainc/</link>
+	</item>
+	<item>
+		<title>A comparison of Rust's borrow checker to the one in C#</title>
+		<description>Different approaches to memory safety through static analysis</description>
+		<link>https://em-tg.github.io/csborrow/</link>
+	</item>
+</channel>
+</rss>
