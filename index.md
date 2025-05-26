@@ -1,6 +1,3 @@
-# em-tg
-
-### Articles
 
 [RSS Feed](feed.xml)
 
