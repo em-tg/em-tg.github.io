@@ -3,7 +3,7 @@
 <channel>
 	<title>em-tg</title>
 	<description>My articles about programming-related topics</description>
-	<link>https://em-tg.github.io/feed/</link>
+	<link>https://em-tg.github.io/</link>
 	<item>
 		<title>Implementing Automatic Struct-of-Array Conversion in C</title>
 		<description>A brief exploration of some older, lesser-known metaprogramming techniques</description>
