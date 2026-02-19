@@ -14,5 +14,10 @@
 		<description>Different approaches to memory safety through static analysis</description>
 		<link>https://em-tg.github.io/csborrow/</link>
 	</item>
+	<item>
+		<title>Laundercat: The Plagiarizing Neural Network</title>
+		<description>This is an idea that's been bouncing around in my head for a while, but which I was reluctant to publish due to the fear that it might come across as more bitter than funny.  I wanted to learn LaTeX, though, and this seemed like a good first project to try out its various features.  Please don't take it too seriously!  Or do, I guess.  I'm not your therapist.</description>
+		<link>https://raw.githubusercontent.com/em-tg/laundercat/refs/heads/master/laundercat.pdf</link>
+	</item>
 </channel>
 </rss>
