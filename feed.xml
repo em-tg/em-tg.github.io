@@ -24,5 +24,10 @@
 		<description>I wanted to bring up an issue I've run into increasingly often, and ended up writing a short history of the SSR/CSR pendulum swing (as I understand it, anyway).</description>
 		<link>https://em-tg.github.io/dedbutt/</link>
 	</item>
+	<item>
+		<title>Trying and Failing to Draw a Line Between Code and Art</title>
+		<description>Hey is anybody actually using this RSS thing?  If you are maybe pop an issue open on this repo to let me know?  Anyway, in this article I talk about game development, programing, art, and Steam's AI disclosure policy.</description>
+		<link>https://em-tg.github.io/artcodesteam/</link>
+	</item>
 </channel>
 </rss>
